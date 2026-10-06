@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* Colori presi dall'app Finanz in produzione. */
+@theme inline {
+  --color-kiwi-50: #f0ffe5;
+  --color-kiwi-100: #d9f7c4;
+  --color-kiwi-200: #bff29c;
+  --color-kiwi-300: #a2ec70;
+  --color-kiwi-400: #88e649;
+  --color-kiwi-500: #75e028;
+  --color-forest: #17380e;
+  --color-forest-deep: #0e3303;
+  --color-green-600: #008100;
+  --color-ink: #0e0f0c;
+  --color-muted: #6a6c6a;
+  --color-line: #e2e2e2;
+  --color-soft: #ecefeb;
+  --color-error: #a8200d;
+  --color-error-soft: #ffd9d4;
+  /* Box colorati dentro le lezioni */
+  --color-box-azzurro: #e9ffff;
+  --color-box-rosa: #ffeef9;
+  --color-box-giallo: #fff8e1;
+  --color-box-viola: #f2e4ff;
+  --color-badge-prova: #faf5ca;
+  --color-badge-sondaggio: #f0fce7;
+  --font-sans: var(--font-inter), var(--font-emoji);
+  --font-display: var(--font-passion), var(--font-emoji);
+  --animate-toast: toast 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-sheet: sheet 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade: fade 200ms ease-out;
+  --animate-pop: pop 360ms cubic-bezier(0.22, 1.4, 0.36, 1);
+}
+
+@keyframes toast {
+  from { opacity: 0; transform: translateY(12px); }
+}
+@keyframes sheet {
+  from { transform: translateY(100%); }
+}
+@keyframes fade {
+  from { opacity: 0; }
+}
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+}
+
+html,
+body {
+  height: 100%;
+  /* niente pull-to-refresh del browser: trascinare giù chiude i bottom sheet */
+  overscroll-behavior: none;
+}
+
+body {
+  background: #f3f5f1;
+  color: var(--color-ink);
+  font-family: var(--font-inter), var(--font-emoji), system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
