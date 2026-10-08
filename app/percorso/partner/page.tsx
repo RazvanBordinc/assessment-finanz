@@ -17,7 +17,7 @@ const GIA_ASSICURATO = "Sì, ne ho già una o più";
 const COSA_COPRE: Record<Ramo, string> = {
   rc_auto: "Obbligatoria per guidare: copre i danni che causi ad altri.",
   casa: "Protegge l'abitazione da danni come incendio o perdite d'acqua.",
-  salute: "Rimborsa visite, esami e ricoveri.",
+  salute: "Copre spese mediche come visite ed esami.",
   vita: "Un capitale per i tuoi cari se ti succede qualcosa.",
   dentale: "Copre visite e cure dal dentista.",
 };
