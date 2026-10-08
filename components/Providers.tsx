@@ -12,9 +12,15 @@ export type Progresso = {
   lezioni: number; // lezioni completate, da 0 a LEZIONI.length
   quiz: boolean;
   kiwiExtra: number;
+  partnerVisto?: boolean; // ha visto la schermata "Trova la tua polizza"
+  promemoria?: Promemoria;
 };
 
+// Quante volte è comparso il promemoria e se l'utente l'ha chiuso.
+export type Promemoria = { mostrato: number; chiuso: boolean };
+
 const VUOTO: Progresso = { lezioni: 0, quiz: false, kiwiExtra: 0 };
+const PROMEMORIA_VUOTO: Promemoria = { mostrato: 0, chiuso: false };
 const STORAGE = "finanz-prototipo-v2";
 
 type Ctx = {
@@ -25,6 +31,8 @@ type Ctx = {
   completaLezione: (indice: number) => void;
   completaQuiz: (kiwi: number) => void;
   impostaProgresso: (p: Progresso) => void;
+  segnaPartnerVisto: () => void;
+  aggiornaPromemoria: (f: (p: Promemoria) => Promemoria) => void;
   track: (event: NomeEvento, properties?: Record<string, string | number>) => void;
   toast: (testo: string) => void;
 };
@@ -90,6 +98,16 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   const impostaProgresso = useCallback((p: Progresso) => aggiorna(() => p), [aggiorna]);
 
+  const segnaPartnerVisto = useCallback(
+    () => aggiorna((p) => (p.partnerVisto ? p : { ...p, partnerVisto: true })),
+    [aggiorna],
+  );
+
+  const aggiornaPromemoria = useCallback(
+    (f: (p: Promemoria) => Promemoria) => aggiorna((p) => ({ ...p, promemoria: f(p.promemoria ?? PROMEMORIA_VUOTO) })),
+    [aggiorna],
+  );
+
   const setUtente = useCallback((id: string) => {
     if (UTENTI.some((u) => u.id === id)) setUtenteId(id);
   }, []);
@@ -115,7 +133,19 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <UtenteContext.Provider
-      value={{ utente, setUtente, progresso, kiwi, completaLezione, completaQuiz, impostaProgresso, track, toast }}
+      value={{
+        utente,
+        setUtente,
+        progresso,
+        kiwi,
+        completaLezione,
+        completaQuiz,
+        impostaProgresso,
+        segnaPartnerVisto,
+        aggiornaPromemoria,
+        track,
+        toast,
+      }}
     >
       {children}
       {messaggio && (

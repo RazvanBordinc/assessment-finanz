@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useUtente } from "@/components/Providers";
 import { BottomNav, ChipStato, Icona } from "@/components/ui";
 import { PannelloTester } from "@/components/PannelloTester";
+import { PromemoriaPolizza } from "@/components/PromemoriaPolizza";
 import { LEZIONI, PERCORSO } from "@/lib/percorso";
 
 export default function Home() {
@@ -106,6 +107,7 @@ export default function Home() {
       </section>
 
       <BottomNav attiva="home" />
+      <PromemoriaPolizza />
       {tester && <PannelloTester onClose={() => setTester(false)} />}
     </>
   );

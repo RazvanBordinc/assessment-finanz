@@ -10,7 +10,17 @@ export type NomeEvento =
   | "Partner Screen Viewed"
   | "Partner CTA Clicked"
   | "Quote Requested"
-  | "Policy Activated";
+  | "Policy Activated"
+  // Promemoria per chi completa il percorso ma non arriva alla schermata partner.
+  | "Partner Reminder Shown"
+  | "Partner Reminder Clicked"
+  | "Partner Reminder Dismissed"
+  // Schermata partner per chi ha già una polizza: quale ramo sceglie.
+  | "Partner Line Selected"
+  | "Partner Checklist Opened"
+  // Sito del partner (proposta, pagine A/B): arriverebbero come postback.
+  | "Partner Page Viewed"
+  | "Renewal Reminder Requested";
 
 export type Evento = {
   event: NomeEvento;

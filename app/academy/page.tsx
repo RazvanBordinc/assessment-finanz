@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useUtente } from "@/components/Providers";
 import { BarraProgresso, BottomNav, ChipStato } from "@/components/ui";
+import { PromemoriaPolizza } from "@/components/PromemoriaPolizza";
 import { LEZIONI, PERCORSO } from "@/lib/percorso";
 
 const ALTRI = [
@@ -62,6 +63,7 @@ export default function Academy() {
       </div>
 
       <BottomNav attiva="academy" />
+      <PromemoriaPolizza />
     </>
   );
 }

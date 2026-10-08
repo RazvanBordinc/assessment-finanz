@@ -4,7 +4,10 @@ import { Suspense, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useUtente } from "@/components/Providers";
 import { Chip, Icona, PrimaryButton } from "@/components/ui";
-import { PERCORSO, QUIZ } from "@/lib/percorso";
+import { LEZIONI, PERCORSO, QUIZ } from "@/lib/percorso";
+
+// Lezioni + quiz fatti, più la schermata partner ancora da vedere.
+const TAPPE = LEZIONI.length + 2;
 
 export default function Page() {
   return (
@@ -69,6 +72,18 @@ function PercorsoCompletato() {
       </div>
 
       <div className="sticky bottom-0 px-4 pb-6">
+        {/* Il percorso non finisce qui: l'ultima tappa è la schermata partner. */}
+        <div className="mb-3 flex flex-col items-center gap-2">
+          <div className="flex gap-1.5" aria-hidden>
+            {Array.from({ length: TAPPE }, (_, i) => (
+              <span
+                key={i}
+                className={`h-2 w-6 rounded-full ${i < TAPPE - 1 ? "bg-kiwi-400" : "border-2 border-kiwi-400"}`}
+              />
+            ))}
+          </div>
+          <span className="text-sm font-semibold text-kiwi-400">Manca un ultimo passo</span>
+        </div>
         <PrimaryButton onClick={() => router.push("/percorso/partner")}>Prosegui</PrimaryButton>
       </div>
     </div>

@@ -33,8 +33,9 @@ app/academy/page.tsx             Academy
 app/percorso/page.tsx            mappa del percorso
 app/percorso/lezione/            lezioni e quiz finale, card per card (?n=1..4 o n=quiz, &c=card)
 app/percorso/completato/         fine percorso
-app/percorso/partner/            schermata partner
-app/comparatore/page.tsx         sito del partner (simulato)
+app/percorso/partner/            schermata partner (due versioni)
+app/comparatore/page.tsx         sito del partner (simulato, pagine A e B)
+components/PromemoriaPolizza.tsx promemoria per chi esce prima della schermata partner
 components/Schede.tsx            le card delle lezioni
 components/ui.tsx                chrome, bottoni, bottom sheet, barra in basso
 lib/percorso.ts                  testi di lezioni e quiz
@@ -44,6 +45,27 @@ lib/track.ts                     tracciamento eventi
 ```
 
 Cambia quello che vuoi: è un punto di partenza, non un vincolo.
+
+## Cosa ho cambiato (Business Case)
+
+**"Trova la tua polizza" per chi ha già una polizza.** Chi all'onboarding risponde "Sì, ne ho già una o più" vede una versione diversa: sceglie quale polizza confrontare (5 rami, ognuno con una riga su cosa copre, il ramo del percorso per primo) e, se vuole, apre cosa controllare prima di confrontare. Tutti gli altri vedono la schermata di sempre. Finanz spiega e non consiglia: il ramo lo sceglie l'utente.
+
+**Sito del partner: pagine A e B (proposta per il partner).** Il bottone apre una pagina generica diversa in base alla risposta di onboarding: B per chi ha già una polizza (confronta la tua polizza attuale, promemoria prima della scadenza), A per tutti gli altri (5 rami con un prezzo di partenza, di esempio). Finanz sceglie solo la pagina: non indica una polizza e non precompila il modulo.
+
+**Fine percorso e promemoria.** "Percorso completato" mostra che manca un ultimo passo; chi esce prima della schermata partner trova un promemoria in Home e in Academy (al massimo 3 volte, si può chiudere). Per provarlo: scorciatoia "Completato, uscito prima del partner".
+
+| Dove | Evento nuovo o proprietà nuova |
+|---|---|
+| Schermata "Trova la tua polizza" | `Partner Screen Viewed` (`versione`: `gia_assicurato` o `standard`) |
+| Scelta del ramo (versione per chi ha già una polizza) | `Partner Line Selected` (`ramo_scelto`) |
+| "Cosa controllare prima di confrontare" aperto | `Partner Checklist Opened` (`ramo_scelto`) |
+| Bottone "Confronta le polizze" | `Partner CTA Clicked` (`versione`, `ramo_scelto`, `pagina_partner`: A o B) |
+| Sito del partner, pagina A o B | `Partner Page Viewed` (`pagina`, postback) |
+| Modulo inviato sul sito del partner | `Quote Requested` (`pagina`, `ramo_scelto`, postback) |
+| Promemoria prima della scadenza (pagina B) | `Renewal Reminder Requested` (`ramo_scelto`, `mese_scadenza`, postback) |
+| Promemoria in Home e Academy | `Partner Reminder Shown` / `Clicked` / `Dismissed` |
+
+Per provare le due versioni: Giulia, Sara e Paolo hanno già una polizza (versione nuova, pagina B); Marco, Elena e Luca vedono la schermata di sempre e la pagina A.
 
 ## Pubblicare
 

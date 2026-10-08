@@ -48,6 +48,7 @@ const ICONE = {
     </>
   ),
   check: <path d="M20 6 9 17l-5-5" />,
+  chevron: <path d="m6 9 6 6 6-6" />,
 };
 
 export function Icona({ nome, size = 24, stroke = 2 }: { nome: keyof typeof ICONE; size?: number; stroke?: number }) {

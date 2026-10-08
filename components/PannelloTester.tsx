@@ -43,7 +43,7 @@ export function PannelloTester({ onClose }: { onClose: () => void }) {
         ))}
       </div>
       <p className="mt-5 text-xs font-semibold tracking-wide text-muted uppercase">Scorciatoie</p>
-      <div className="mt-2 grid grid-cols-3 gap-2 text-sm font-semibold">
+      <div className="mt-2 grid grid-cols-2 gap-2 text-sm font-semibold">
         <button className="rounded-2xl bg-soft px-2 py-3" onClick={() => salta(0, false, "/", "Percorso azzerato")}>
           Ricomincia da zero
         </button>
@@ -58,6 +58,13 @@ export function PannelloTester({ onClose }: { onClose: () => void }) {
           onClick={() => salta(LEZIONI.length, true, "/percorso/partner", "Percorso completato")}
         >
           Vai alla schermata partner
+        </button>
+        {/* Chi esce su "Percorso completato" senza vedere la schermata partner: in Home compare il promemoria. */}
+        <button
+          className="rounded-2xl bg-soft px-2 py-3"
+          onClick={() => salta(LEZIONI.length, true, "/", "Percorso completato, schermata partner non vista")}
+        >
+          Completato, uscito prima del partner
         </button>
       </div>
     </Sheet>

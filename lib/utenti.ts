@@ -27,6 +27,8 @@ export const UTENTI: Utente[] = [
   { id: "u6", nome: "Paolo", eta: 52, os: "Android", onboarding_intent: "Sì, ne ho già una o più", ramo: "casa", kiwi: 430 },
 ];
 
+export const RAMI: Ramo[] = ["rc_auto", "casa", "salute", "vita", "dentale"];
+
 export const NOME_RAMO: Record<Ramo, string> = {
   rc_auto: "RC auto",
   casa: "casa",
