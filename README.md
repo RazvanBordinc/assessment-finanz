@@ -42,6 +42,7 @@ lib/percorso.ts                  testi di lezioni e quiz
 lib/navigazione.ts               cronologia card per card (tasto indietro)
 lib/utenti.ts                    utenti di prova
 lib/track.ts                     tracciamento eventi
+analysis.sql                     le query dietro ogni numero del PDF (Postgres/Supabase, gira anche su DuckDB)
 ```
 
 Cambia quello che vuoi: è un punto di partenza, non un vincolo.
@@ -66,6 +67,19 @@ Cambia quello che vuoi: è un punto di partenza, non un vincolo.
 | Promemoria in Home e Academy | `Partner Reminder Shown` / `Clicked` / `Dismissed` |
 
 Per provare le due versioni: Giulia, Sara e Paolo hanno già una polizza (versione nuova, pagina B); Marco, Elena e Luca vedono la schermata di sempre e la pagina A.
+
+## Verificare i numeri
+
+Ogni numero del PDF esce da `analysis.sql`. Salva il primo foglio dell'export come CSV, poi:
+
+- **Supabase:** importa il CSV come tabella `finanz` con la colonna `time` di tipo `timestamptz` (Table Editor → Import data from CSV), apri il SQL Editor, incolla `analysis.sql` ed esegui.
+- **DuckDB:**
+
+```sql
+create table finanz as select * from read_csv('export_mixpanel_assicurazioni.csv', header=true, all_varchar=true);
+alter table finanz alter column time type timestamp using cast(time as timestamp);
+.read analysis.sql
+```
 
 ## Pubblicare
 
