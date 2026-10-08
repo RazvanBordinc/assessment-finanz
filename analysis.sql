@@ -249,8 +249,13 @@ select
   max(extract(epoch from (viewed_at - completed_at)))                                          as max_seconds
 from finanz_users where completed and viewed and viewed_at >= completed_at;
 
--- 7e. The partner screen is seen once: 63 users saw it twice
-select count(*) as users_who_saw_partner_screen_twice from finanz_users where n_views >= 2;
+-- 7e. The partner screen is seen once: nobody saw it twice (0). 63 users have the view logged twice, but with the
+--     same timestamp and the same $insert_id: one view tracked twice, not a second visit.
+select
+  count(*) filter (where view_events >= 2)   as users_with_the_view_logged_twice,
+  count(*) filter (where separate_views >= 2) as users_who_saw_it_twice
+from (select distinct_id, count(*) as view_events, count(distinct time) as separate_views
+      from finanz_norm where event = 'Partner Screen Viewed' group by distinct_id) v;
 
 
 -- -----------------------------------------------------------------------------------------------------
