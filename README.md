@@ -51,7 +51,7 @@ Cambia quello che vuoi: è un punto di partenza, non un vincolo.
 
 **"Trova la tua polizza" per chi ha già una polizza.** Chi all'onboarding risponde "Sì, ne ho già una o più" vede una versione diversa: sceglie quale polizza confrontare (5 rami, ognuno con una riga su cosa copre, il ramo del percorso per primo) e, se vuole, apre cosa controllare prima di confrontare. Tutti gli altri vedono la schermata di sempre. Finanz spiega e non consiglia: il ramo lo sceglie l'utente.
 
-**Sito del partner: pagine A e B (proposta per il partner).** Il bottone apre una pagina generica diversa in base alla risposta di onboarding: B per chi ha già una polizza (confronta la tua polizza attuale, promemoria prima della scadenza), A per tutti gli altri (5 rami con un prezzo di partenza, di esempio). Finanz sceglie solo la pagina: non indica una polizza e non precompila il modulo.
+**Sito del partner: pagine A e B (proposta per il partner).** Il bottone apre una pagina generica diversa in base alla risposta di onboarding: B per chi ha già una polizza (5 rami con un prezzo di partenza, di esempio, e un promemoria prima della scadenza), A per tutti gli altri (5 rami con un prezzo di partenza, di esempio). Finanz sceglie solo la pagina: non indica una polizza e non precompila il modulo.
 
 **Fine percorso e promemoria.** "Percorso completato" mostra che manca un ultimo passo; chi esce prima della schermata partner trova un promemoria in Home e in Academy (al massimo 3 volte, si può chiudere). Per provarlo: scorciatoia "Completato, uscito prima del partner".
 

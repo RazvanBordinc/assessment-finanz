@@ -169,10 +169,13 @@ function Comparatore() {
                 }`}
               >
                 <span className="font-semibold">{maiuscola(NOME_RAMO[r])}</span>
-                <span className="shrink-0 text-lg font-semibold">›</span>
+                <span className={`shrink-0 text-sm font-semibold ${r === dalPercorso ? "text-white" : "text-green-600"}`}>
+                  da € {PREZZO_DA[r]}/anno ›
+                </span>
               </button>
             ))}
           </div>
+          <p className="-mt-2 text-xs text-[#6b7280]">Prezzi di esempio, simulati per la demo.</p>
 
           <form
             className="flex flex-col gap-3 rounded-md border border-[#dfe2e6] bg-white p-4"
